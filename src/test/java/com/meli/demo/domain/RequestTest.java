@@ -25,6 +25,7 @@ class RequestTest {
         request.setAmount(amount);
         request.setItemIds(itemsIds);
 
+
         assertNotNull(request);
         assertEquals(request.getItemIds(), itemsIds);
         assertEquals(request.getAmount(), amount);

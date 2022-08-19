@@ -20,10 +20,6 @@ public class ProductConsumer implements IProductConsumer{
 
     private final String url = "https://api.mercadolibre.com/items?ids=";
 
-    public ProductConsumer() {
-
-    }
-
     /**
      *  Invokes MELI's Items API with the given item IDs to retrieve each item's price
      * */
