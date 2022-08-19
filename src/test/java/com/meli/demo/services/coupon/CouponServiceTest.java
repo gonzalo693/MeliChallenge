@@ -59,10 +59,10 @@ class CouponServiceTest {
 
     @Test
     void givenRequestOK_thenSaveItems(){
-        var request = givenRequest();
-        var responseExpected = givenResponse();
+        Request request = givenRequest();
+        Response responseExpected = givenResponse();
         Response responseActual = new Response();
-        var mapResponseApi  = givenMapResponseApi();
+        Map<String, Float> mapResponseApi  = givenMapResponseApi();
         ProductConsumer productConsumer = mock(ProductConsumer.class);;
         when(productConsumer.getProductPrices(idsToApi)).thenReturn(mapResponseApi);
 

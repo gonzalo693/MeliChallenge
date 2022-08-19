@@ -30,7 +30,7 @@ public class CouponController  {
 
 
     /** Returns a coupon containing a subset of items whose sum of their price is equals or nearest to a limit.*/
-    @RequestMapping(value = "/validarCupon",method = RequestMethod.POST)
+    @RequestMapping(value = "/couponProcess",method = RequestMethod.POST)
     public ResponseEntity <Response> CuponProcess(@RequestBody Request request){
 
         Response response;

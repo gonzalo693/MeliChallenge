@@ -19,7 +19,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 class ProductConsumerTest {
 
 
-    private static RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
+   private static RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
 
 
     private static JSONArray jsonArray;
@@ -35,11 +35,11 @@ class ProductConsumerTest {
         assertNotNull(response.entrySet().stream().findFirst());
     }
 
-    /*@Test
+    @Test
     void callMeliService_thenCheckItemNotFound(){
         Map<String, Float> response = productConsumer.getProductPrices("MLA779055077");
-        assertNotEquals(response.get(re));
-    }*/
+        assertTrue(response.entrySet().isEmpty());
+    }
     @Test
     void getProductPrices() {
 
@@ -48,10 +48,12 @@ class ProductConsumerTest {
 
             JSONObject objectOne = new JSONObject();
             objectOne.put("id", "1");
+            objectOne.put("title", "Test Data 1");
             objectOne.put("price", 180F);
 
             JSONObject objectTwo = new JSONObject();
             objectTwo.put("id", "2");
+            objectTwo.put("title", "Test Data 2");
             objectTwo.put("price", 200F);
 
             jsonArray.put(objectTwo);
