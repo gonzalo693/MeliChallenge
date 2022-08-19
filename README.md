@@ -47,7 +47,7 @@ Body
 }
 
 ## Execute with Swagger UI
-
+After you run the App  open the Swagger page Similar to Postman
 http://localhost:8080/swagger-ui.html
 
 ## Execute from Remote 
