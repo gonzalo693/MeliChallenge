@@ -1,4 +1,4 @@
-package com.meli.demo.services.repository;
+package com.meli.demo.repository;
 
 import com.meli.demo.services.bean.Product;
 import org.springframework.stereotype.Repository;

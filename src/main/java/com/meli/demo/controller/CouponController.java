@@ -2,19 +2,18 @@ package com.meli.demo.controller;
 
 import com.meli.demo.domain.Request;
 import com.meli.demo.domain.Response;
+import com.meli.demo.services.bean.Product;
 import com.meli.demo.services.coupon.CouponService;
 import com.meli.demo.services.product.ProductConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -31,7 +30,25 @@ public class CouponController  {
     @RequestMapping(value = "/validarCupon",method = RequestMethod.POST)
     public ResponseEntity <Response> CuponProcess(@RequestBody Request request){
 
-      return new ResponseEntity<Response>(couponService.calculateItemListByAmount(request), HttpStatus.OK);
+        Response response;
+        try {
+            response = couponService.calculateItemListByAmount(request);
+        } catch (Exception e) {
+
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+
+        }
+
+      return new ResponseEntity<Response>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/coupon/stats")
+    public List<Product> GetCouponStats(){
+        List<Product> topItems = new ArrayList<Product>();
+        couponService.getTopItems().entrySet().stream().forEach(i -> {
+            topItems.add(new Product(i.getKey(), i.getValue()));
+        });
+        return topItems;
     }
 
 }

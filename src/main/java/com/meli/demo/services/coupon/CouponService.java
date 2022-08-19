@@ -3,8 +3,8 @@ package com.meli.demo.services.coupon;
 import com.meli.demo.domain.Request;
 import com.meli.demo.domain.Response;
 import com.meli.demo.services.product.ProductConsumer;
+import com.meli.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -16,25 +16,39 @@ public class CouponService implements ICouponService{
 
     @Autowired
     ProductConsumer productConsumer;
+
+    @Autowired
+    ProductRepository productRepository;
     @Override
-    public Response calculateItemListByAmount(@RequestBody Request request) {
+    public Response calculateItemListByAmount(@RequestBody Request request) throws Exception {
         String idSplited = "";
+
+        if (request == null || request.getItemIds() == null || request.getItemIds().isEmpty()) {
+            throw new Exception();
+        }
+
         idSplited = this.getIds(request.getItemIds());
-
-
         Map<String, Float> returnValues  = productConsumer.getProductPrices(idSplited);
+        List<String> productList = calculate(returnValues,request.getAmount());
 
+        if(productList == null || productList.isEmpty()) {
 
-        List<String> lista = calculate(returnValues,request.getAmount());
-
+            throw new Exception();
+        }
 
         AtomicReference<Float> total = new AtomicReference();
         total.set(0F);
 
-        lista.stream().forEach(itera -> total.set(total.get() + returnValues.get(itera)));
+        productList.stream().forEach(itera -> {total.set(total.get() + returnValues.get(itera));
+            productRepository.AddItemToCache(itera);
+        });
 
-        Response response = new Response(total.get(),lista );
+        Response response = new Response(total.get(),productList );
         return response;
+    }
+
+    public HashMap<String, Integer> getTopItems(){
+        return productRepository.GetTopItems();
     }
 
     private String getIds(Set<String> ids) {

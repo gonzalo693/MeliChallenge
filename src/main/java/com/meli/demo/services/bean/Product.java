@@ -1,31 +1,27 @@
 package com.meli.demo.services.bean;
 
-public class Persona {
-    public String nombre;
-    public String apellidos;
-    public String documento;
+public class Product {
+    public String itemId;
+    public int counter;
 
-    public String getNombre() {
-        return nombre;
+    public Product(String itemId, int counter) {
+        this.itemId = itemId;
+        this.counter = counter;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getItemId() {
+        return itemId;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public int getCounter() {
+        return counter;
     }
 
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
