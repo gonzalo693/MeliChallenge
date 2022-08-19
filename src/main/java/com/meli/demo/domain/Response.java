@@ -5,6 +5,12 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * This class represents a POJO for handling the Coupon API response.
+ * It contains the favorite items IDs that were selected for the coupon.
+ * It also contains the total amount of the coupon by adding all selected items price.
+ */
+
 public class Response implements Serializable {
     @JsonAlias("item_ids")
     private List<String> itemsIds;

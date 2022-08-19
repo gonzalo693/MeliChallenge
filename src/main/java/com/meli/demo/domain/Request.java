@@ -5,6 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Set;
 
+/**
+ * This class represents a POJO for handling the Coupon API request.
+ * It holds a string Set containing the items IDs.
+ * It also holds a number that is the maximum value for the coupon.
+ *
+ */
 public class Request implements Serializable {
     @JsonProperty(value= "item_ids")
     private Set<String> itemIds;

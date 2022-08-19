@@ -7,10 +7,13 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/** This Class is in charge of store the Items used in coupons in order to handle and show the Top favourites  */
 @Repository
 public class ProductRepository {
     private static List<Product> cachedItems = new ArrayList<Product>();
 
+ /**
+  * This method add the items to a List for every coupon call and count if the customer call more than one time each item */
     public void AddItemToCache(String itemId) {
         Optional<Product> existingItem = cachedItems.stream().filter(i -> i.getItemId().equals(itemId)).findFirst();
         if(!existingItem.isPresent()){
@@ -20,6 +23,9 @@ public class ProductRepository {
         }
     }
 
+    /**
+     * Obtain a List of Top 5  favourites items based on the previous call to  coupon Api
+     * */
     public HashMap<String, Integer> GetTopItems() {
         HashMap<String, Integer> items = cachedItems.stream().filter(i -> i.getCounter() > 0)
                 .sorted(Comparator.comparingInt(e -> -e.getCounter())).limit(5)

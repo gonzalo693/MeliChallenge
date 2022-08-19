@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * This class represents the service which holds the business logic for getting the list of items of a coupon
+ */
 @Service
 public class CouponService implements ICouponService{
 
@@ -19,6 +22,14 @@ public class CouponService implements ICouponService{
 
     @Autowired
     ProductRepository productRepository;
+
+    /**
+     * Retrieves the response of items that fulfills a coupon limit giving a list of favorite items.
+     * <p>
+     * Receive and process request from MELI's Items API.
+     * Once all favorite items have price it will get the best subset of items based on maximizing coupon's limit
+     *
+     */
     @Override
     public Response calculateItemListByAmount(@RequestBody Request request) throws Exception {
         String idSplited = "";
@@ -68,6 +79,10 @@ public class CouponService implements ICouponService{
 
         return tempList.toString();
     }
+
+    /**
+     * Obtain ItemSelected List by calculating the item value of each item against the amount of one coupon
+     * */
     private List<String> calculate(Map<String, Float> items, Float amount) {
 
         List<String> itemsSelected = new ArrayList();

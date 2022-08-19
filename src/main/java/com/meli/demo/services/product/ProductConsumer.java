@@ -1,6 +1,6 @@
 package com.meli.demo.services.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import net.minidev.json.JSONArray;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -8,7 +8,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import net.minidev.json.JSONArray;
+
+
+/**
+ * This class represents a service used to invoke MELI's Items API to make the request and process the response.
+ */
 
 @Service
 public class ProductConsumer implements IProductConsumer{
@@ -20,6 +24,9 @@ public class ProductConsumer implements IProductConsumer{
 
     }
 
+    /**
+     *  Invokes MELI's Items API with the given item IDs to retrieve each item's price
+     * */
     public Map<String, Float> getProductPrices(String ids) {
 
         RestTemplate restTemplate = new RestTemplate();

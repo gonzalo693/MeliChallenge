@@ -5,6 +5,11 @@ import com.meli.demo.services.bean.Product;
 
 import java.util.List;
 
+/**
+ * This class represents a response POJO for the Coupon Stats API.
+ * It holds an item ID of the item that has been used in coupons.
+ */
+
 public class ResponseProduct {
 
     @JsonAlias("item_ids")
