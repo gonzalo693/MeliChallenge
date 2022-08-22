@@ -53,22 +53,29 @@ http://localhost:8080/swagger-ui.html
 ## Execute from Remote 
 //TODO
 
-to execute the project from local you can use the CURL command
-
-curl -X POST 
--H 'Content-Type: application/json'
--d '{ "item_ids": ["MCO839643993", "MCO850939562", "MCO630791535", "MLA4", "MCO630791535"], "amount": 50000}'
-
-or from postman as follows
-
- POST
-URL
-Body
-{
-"item_ids": ["MCO839643993", "MCO850939562", "MCO630791535", "MLA4", "MCO630791535"],
-"amount": 50000
-}
+to execute the project from remote you can use the CURL commands
 
 
-### Notes
-Project
+from postman as follows
+
+curl - POST 
+/couponProcess  use the amount of a coupon and list of items in order to maximize the amount 
+
+curl --location --request POST 'https://sheltered-fjord-22768.herokuapp.com/cupon/couponProcess' \
+--header 'accept: */*' \
+--header 'Content-Type: application/json' \
+--data-raw '{"item_ids": ["MLA811601010"],"amount": 50000}'
+
+ curl - GET
+ /coupon/stats  returns a list of favorites items founded.
+
+ curl --location --request GET 'https://sheltered-fjord-22768.herokuapp.com/cupon/coupon/stats' \
+ --header 'accept: */*'
+
+## Resources 
+
+Items List to test
+
+"MLA759942879","MLA759942879","MLA791074957","MLA756385586","MLA772802098","MLA784528959"
+
+
