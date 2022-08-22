@@ -80,7 +80,7 @@ class CouponServiceTest {
 
     @Test
     void givenBadRequest_thenThrowException(){
-        var request = emptyRequest();
+        Request request = emptyRequest();
         assertThrows(Exception.class,()->couponService.calculateItemListByAmount(request));
     }
 
